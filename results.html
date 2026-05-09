@@ -7,23 +7,26 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <h1 id="heading">查詢結果</h1>
+    <div class="container">
+      <h1 id="heading">查詢結果</h1>
 
-    <table id="result-table">
-      <thead>
-        <tr>
-          <th>公司名稱</th>
-          <th>碳排放</th>
-          <th>詳細</th>
-        </tr>
-      </thead>
-      <tbody id="result-body">
-      </tbody>
-    </table>
+      <div class="table-wrap">
+        <table id="result-table">
+          <thead>
+            <tr>
+              <th>公司名稱</th>
+              <th>碳排放</th>
+              <th>詳細</th>
+            </tr>
+          </thead>
+          <tbody id="result-body"></tbody>
+        </table>
+      </div>
 
-    <p id="no-result" style="display:none;">查無相關資料</p>
+      <p id="no-result" style="display:none;">查無相關資料</p>
 
-    <a class="back" href="index.html">返回查詢</a>
+      <a class="back" href="index.html">← 返回查詢</a>
+    </div>
 
     <script src="data.js"></script>
     <script>

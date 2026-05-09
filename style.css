@@ -8,7 +8,14 @@ body {
   font-family: sans-serif;
   background: #f5f5f5;
   color: #333;
-  padding: 2rem 1rem;
+}
+
+/* ── 置中 container（results / detail 用）── */
+.container {
+  width: 100%;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
 }
 
 /* ── 首頁置中搜尋區 ── */
@@ -17,13 +24,19 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 60vh;
+  min-height: 100vh;
+  padding: 2rem 1rem;
   gap: 1rem;
 }
 
+.search-box h1 {
+  margin-bottom: 0;
+}
+
 .search-box input[type="text"] {
-  width: 320px;
-  padding: 0.6rem 1rem;
+  width: 100%;
+  max-width: 360px;
+  padding: 0.65rem 1rem;
   font-size: 1rem;
   border: 1px solid #ccc;
   border-radius: 6px;
@@ -34,6 +47,7 @@ body {
   border-color: #2e7d32;
 }
 
+/* ── 標題 ── */
 h1 {
   font-size: 1.6rem;
   margin-bottom: 1.5rem;
@@ -44,10 +58,17 @@ h2 {
   margin: 1.5rem 0 0.8rem;
 }
 
+/* ── 表格容器（讓手機可橫向捲動）── */
+.table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
 /* ── 共用表格 ── */
 table {
   width: 100%;
-  max-width: 860px;
+  min-width: 480px;
   border-collapse: collapse;
   background: #fff;
   border-radius: 8px;
@@ -60,6 +81,7 @@ th, td {
   text-align: left;
   border-bottom: 1px solid #eee;
   font-size: 0.95rem;
+  white-space: nowrap;
 }
 
 thead th {
@@ -68,12 +90,12 @@ thead th {
   font-weight: 600;
 }
 
-/* detail.html 的左側 th */
+/* detail.html 左側 th */
 tbody th {
   background: #f0f4f0;
   color: #444;
   font-weight: 600;
-  width: 180px;
+  width: 160px;
 }
 
 tr:last-child td,
@@ -95,8 +117,7 @@ a:hover {
   text-decoration: underline;
 }
 
-a.back,
-a.return {
+a.back {
   display: inline-block;
   margin-top: 1.2rem;
   font-size: 0.9rem;
@@ -114,7 +135,6 @@ hr {
   border: none;
   border-top: 1px solid #ddd;
   margin: 2rem 0 1rem;
-  max-width: 860px;
 }
 
 .mail-to {
@@ -126,7 +146,6 @@ hr {
 textarea {
   display: block;
   width: 100%;
-  max-width: 860px;
   padding: 0.75rem;
   font-size: 0.95rem;
   border: 1px solid #ccc;
@@ -153,4 +172,30 @@ button {
 
 button:hover {
   background: #1b5e20;
+}
+
+/* ══ RWD ══ */
+
+/* 平板以下（< 768px）*/
+@media (max-width: 768px) {
+  h1 { font-size: 1.3rem; }
+
+  .container { padding: 1.5rem 1rem; }
+
+  tbody th { width: 120px; }
+
+  th, td { font-size: 0.88rem; padding: 0.6rem 0.75rem; }
+}
+
+/* 手機（< 480px）*/
+@media (max-width: 480px) {
+  h1 { font-size: 1.15rem; }
+
+  .search-box input[type="text"] { max-width: 100%; }
+
+  tbody th { width: 100px; }
+
+  th, td { font-size: 0.82rem; padding: 0.5rem 0.6rem; }
+
+  button { width: 100%; }
 }
