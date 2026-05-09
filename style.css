@@ -207,8 +207,7 @@ body {
 }
 
 .search-box input[type="text"] {
-  width: 100%;
-  max-width: 360px;
+  width: min(360px, calc(90vw - 2rem));
   padding: 0.65rem 1rem;
   font-size: 1rem;
   border: 1px solid #ccc;
@@ -485,14 +484,11 @@ button:hover {
   .nav-brand-main { font-size: 0.88rem; }
   .nav-btn { font-size: 0.75rem; padding: 0.28rem 0.5rem; }
 
-  /* 搜尋框滿版 */
-  .search-box input[type="text"] { max-width: 100%; }
-
   /* 搜尋卡片高度自動延伸 */
   .search-box::before { height: auto; min-height: 300px; }
 
-  /* 首頁查詢按鈕滿版（只針對 search-box 內） */
-  .search-box button { width: 100%; max-width: 360px; }
+  /* 首頁查詢按鈕與輸入框同寬 */
+  .search-box button { width: min(360px, calc(90vw - 2rem)); }
 
   /* bottom-bar 按鈕不受全域 width 影響 */
   .bottom-bar-btn { flex: 1; text-align: center; }
