@@ -143,6 +143,16 @@ body {
   padding: 2rem 1.5rem;
 }
 
+/* ── 首頁背景圖（blur 獨立一層，內容不模糊）── */
+.bg-blur {
+  position: fixed;
+  inset: 0;
+  background: url('assets/bg.jpg') center center / cover no-repeat;
+  filter: blur(6px);
+  transform: scale(1.05); /* 防止 blur 邊緣露白 */
+  z-index: -1;
+}
+
 /* ── 首頁置中搜尋區 ── */
 .search-box {
   display: flex;
@@ -152,6 +162,22 @@ body {
   min-height: 100vh;
   padding: 2rem 1rem;
   gap: 1rem;
+  position: relative;
+  z-index: 1;
+}
+
+.search-box::before {
+  content: '';
+  position: absolute;
+  inset: 50% auto auto 50%;
+  transform: translate(-50%, -50%);
+  width: 420px;
+  max-width: 90vw;
+  height: 280px;
+  background: rgba(255,255,255,0.82);
+  backdrop-filter: blur(2px);
+  border-radius: 16px;
+  z-index: -1;
 }
 
 .search-box h1 {
@@ -176,7 +202,7 @@ body {
 .search-label {
   font-size: 1rem;
   font-weight: 400;
-  color: #555;
+  color: #1a1a1a;
   margin-bottom: 0.25rem;
 }
 
@@ -196,12 +222,13 @@ body {
 
 .link-hint {
   font-size: 0.85rem;
-  color: #888;
+  color: #2e7d32;
   text-decoration: underline;
+  font-weight: 500;
 }
 
 .link-hint:hover {
-  color: #2e7d32;
+  color: #1b5e20;
 }
 
 /* ── 標題 ── */
