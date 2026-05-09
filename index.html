@@ -9,7 +9,10 @@
 
     <body>
         <nav class="navbar">
-            <span class="nav-brand">企業碳排採購系統</span>
+            <div class="nav-brand">
+                <span class="nav-brand-sub">Eco-CO2</span>
+                <span class="nav-brand-main">企業碳排採購系統</span>
+            </div>
             <div class="nav-links">
                 <div class="dropdown">
                     <button class="nav-btn" onclick="toggleDropdown()">行業類別 ▾</button>
@@ -20,7 +23,7 @@
         </nav>
 
         <div class="search-box">
-            <h1>輸入您所需的行業</h1>
+            <p class="search-label">輸入您所需的行業</p>
             <input type="text" id="industry" placeholder="例如：塑膠容器製造…">
             <button onclick="search()">查詢</button>
             <a class="link-hint" href="https://carbonfee.moenv.gov.tw/" target="_blank">未申報？</a>
