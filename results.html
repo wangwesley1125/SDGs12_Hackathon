@@ -37,9 +37,9 @@
         document.getElementById('heading').textContent = '「' + query + '」查詢結果';
       }
 
-      const matched = database.filter(row =>
-        row.industry.includes(query) || query.includes(row.industry)
-      );
+      const matched = database
+        .filter(row => row.industry.includes(query) || query.includes(row.industry))
+        .sort((a, b) => parseFloat(a.carbon) - parseFloat(b.carbon));
 
       function roundCarbon(carbonStr) {
         const num = parseFloat(carbonStr.replace(/,/g, ''));
