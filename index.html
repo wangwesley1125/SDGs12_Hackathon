@@ -1,11 +1,105 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-TW">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>企業碳排採購管理系統</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <h1>Hello world</h1>
+
+  <!-- ===== Navbar ===== -->
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-brand">
+        <span class="logo-icon">🌿</span>
+        <span class="brand-text">
+          企業碳排採購管理系統
+          <span class="brand-sub">Carbon Procurement Management System</span>
+        </span>
+      </a>
+      <button class="nav-toggle" aria-label="開啟選單" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="index.html" class="active">首頁</a></li>
+        <li><a href="#">關於系統</a></li>
+        <li><a href="#">碳權市場</a></li>
+        <li><a href="#">聯絡我們</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ===== Hero ===== -->
+  <section class="hero">
+    <h1>🌍 企業碳排採購管理系統</h1>
+    <p>協助企業透明化碳排放數據、採購碳權，實現淨零轉型目標，共同守護地球永續未來。</p>
+
+    <div class="select-card">
+      <label for="companySelect">選擇您的企業</label>
+      <div class="select-wrapper">
+        <select id="companySelect">
+          <option value="">-- 請選擇公司 --</option>
+          <optgroup label="製造業">
+            <option value="台積電股份有限公司">台積電股份有限公司</option>
+            <option value="鴻海精密工業">鴻海精密工業</option>
+            <option value="中鋼股份有限公司">中鋼股份有限公司</option>
+            <option value="台塑石化股份有限公司">台塑石化股份有限公司</option>
+            <option value="友達光電股份有限公司">友達光電股份有限公司</option>
+          </optgroup>
+          <optgroup label="能源業">
+            <option value="台灣電力公司">台灣電力公司</option>
+            <option value="中油股份有限公司">中油股份有限公司</option>
+          </optgroup>
+          <optgroup label="金融業">
+            <option value="國泰金融控股">國泰金融控股</option>
+            <option value="富邦金融控股">富邦金融控股</option>
+          </optgroup>
+          <optgroup label="科技業">
+            <option value="聯發科技股份有限公司">聯發科技股份有限公司</option>
+            <option value="華碩電腦股份有限公司">華碩電腦股份有限公司</option>
+            <option value="宏碁股份有限公司">宏碁股份有限公司</option>
+          </optgroup>
+        </select>
+      </div>
+      <button class="btn-primary" id="enterBtn" disabled>
+        進入企業操作平台 →
+      </button>
+    </div>
+  </section>
+
+  <!-- ===== Feature Cards ===== -->
+  <section class="info-section">
+    <h2>系統核心功能</h2>
+    <div class="cards-grid">
+      <div class="info-card">
+        <div class="card-icon">📊</div>
+        <h3>碳排放量申報</h3>
+        <p>上傳並管理企業每期碳排放數據，自動計算排放當量與趨勢分析。</p>
+      </div>
+      <div class="info-card">
+        <div class="card-icon">🛒</div>
+        <h3>碳權採購</h3>
+        <p>瀏覽碳權市場行情，一鍵完成碳信用額度採購與核發申請。</p>
+      </div>
+      <div class="info-card">
+        <div class="card-icon">📋</div>
+        <h3>減碳計畫管理</h3>
+        <p>制定年度減碳目標，追蹤各部門執行進度與改善成效。</p>
+      </div>
+      <div class="info-card">
+        <div class="card-icon">📄</div>
+        <h3>永續報告書</h3>
+        <p>自動彙整碳排數據，產出符合 GRI / TCFD 規範的永續報告書。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Footer ===== -->
+  <footer>
+    <p>© 2026 <span>企業碳排採購管理系統</span>｜SDGs 12 – 負責任的消費與生產</p>
+  </footer>
+
+  <script src="js/main.js"></script>
 </body>
 </html>
