@@ -37,9 +37,10 @@
       <a class="bottom-bar-btn outline" href="javascript:history.back()">上一頁</a>
       <button class="bottom-bar-btn" onclick="sendMail()">送出信件</button>
       <button class="bottom-bar-btn" id="save-btn" onclick="saveCompany()">儲存</button>
+      <a class="bottom-bar-btn" id="unreported-btn" href="https://carbonfee.moenv.gov.tw/" target="_blank" style="display:none;">未申報？點此進申報</a>
     </div>
 
-    <div class="save-toast" id="save-toast">儲存成功 ✓</div>
+    <div class="save-toast" id="save-toast">儲存成功</div>
 
     <script src="data.js"></script>
     <script>
@@ -57,6 +58,8 @@
         const carbonEl = document.getElementById('d-carbon');
         if (company.carbon === '未申報') {
           carbonEl.innerHTML = '<span style="color:#c62828;font-weight:600;">未申報</span>';
+          document.getElementById('save-btn').style.display = 'none';
+          document.getElementById('unreported-btn').style.display = 'inline';
         } else {
           carbonEl.textContent = company.carbon;
         }
