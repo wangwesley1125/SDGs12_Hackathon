@@ -102,7 +102,7 @@
         saved.forEach((company, idx) => {
           const tr = document.createElement('tr');
           tr.innerHTML = `
-            <td><input type="checkbox" class="row-check" data-carbon="${parseCarbon(company.carbon)}" data-name="${company.name}" data-raw="${company.carbon}" onchange="updateTotal()"></td>
+            <td><input type="checkbox" class="row-check" data-carbon="${parseCarbon(company.carbon)}" data-name="${company.name}" data-raw="${company.carbon}" data-industry="${company.industry}" onchange="updateTotal()"></td>
             <td>${company.name}</td>
             <td>${company.industry}</td>
             <td>${company.carbon}</td>
@@ -140,7 +140,7 @@
         let rows = '';
         checked.forEach(cb => {
           total += parseFloat(cb.dataset.carbon) || 0;
-          rows += `<tr><td>${cb.dataset.name}</td><td>${cb.dataset.raw}</td></tr>`;
+          rows += `<tr><td>${cb.dataset.name}</td><td>${cb.dataset.industry}</td><td>${cb.dataset.raw}</td></tr>`;
         });
 
         const now = new Date().toLocaleDateString('zh-TW');
@@ -148,7 +148,7 @@
           <h2>碳排放總計報告</h2>
           <p class="print-date">產出日期：${now}</p>
           <table>
-            <thead><tr><th>公司名稱</th><th>總碳排</th></tr></thead>
+            <thead><tr><th>公司名稱</th><th>行業類別</th><th>總碳排</th></tr></thead>
             <tbody>${rows}</tbody>
           </table>
           <p class="print-total">勾選總排放量：${formatCarbon(total)} 公噸 CO₂e</p>
