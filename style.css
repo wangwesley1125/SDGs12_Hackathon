@@ -135,6 +135,16 @@ body {
   border-color: #2e7d32;
 }
 
+.link-hint {
+  font-size: 0.85rem;
+  color: #888;
+  text-decoration: underline;
+}
+
+.link-hint:hover {
+  color: #2e7d32;
+}
+
 /* ── 標題 ── */
 h1 {
   font-size: 1.6rem;
