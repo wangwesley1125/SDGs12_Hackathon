@@ -1,0 +1,133 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: sans-serif;
+  background: #f5f5f5;
+  color: #333;
+  padding: 2rem 1rem;
+}
+
+h1 {
+  font-size: 1.6rem;
+  margin-bottom: 1.5rem;
+}
+
+h2 {
+  font-size: 1.2rem;
+  margin: 1.5rem 0 0.8rem;
+}
+
+/* ── 共用表格 ── */
+table {
+  width: 100%;
+  max-width: 860px;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+
+th, td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+  font-size: 0.95rem;
+}
+
+thead th {
+  background: #2e7d32;
+  color: #fff;
+  font-weight: 600;
+}
+
+/* detail.html 的左側 th */
+tbody th {
+  background: #f0f4f0;
+  color: #444;
+  font-weight: 600;
+  width: 180px;
+}
+
+tr:last-child td,
+tr:last-child th {
+  border-bottom: none;
+}
+
+tbody tr:hover td {
+  background: #f0f7f0;
+}
+
+/* ── 連結 ── */
+a {
+  color: #2e7d32;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+a.back,
+a.return {
+  display: inline-block;
+  margin-top: 1.2rem;
+  font-size: 0.9rem;
+}
+
+/* ── 查無資料 ── */
+#no-result,
+#not-found {
+  color: #888;
+  margin-top: 1rem;
+}
+
+/* ── 聯絡廠商區塊 ── */
+hr {
+  border: none;
+  border-top: 1px solid #ddd;
+  margin: 2rem 0 1rem;
+  max-width: 860px;
+}
+
+.mail-to {
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+  color: #555;
+}
+
+textarea {
+  display: block;
+  width: 100%;
+  max-width: 860px;
+  padding: 0.75rem;
+  font-size: 0.95rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  resize: vertical;
+  outline: none;
+  font-family: inherit;
+}
+
+textarea:focus {
+  border-color: #2e7d32;
+}
+
+button {
+  margin-top: 0.75rem;
+  padding: 0.55rem 1.8rem;
+  font-size: 0.95rem;
+  background: #2e7d32;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #1b5e20;
+}
