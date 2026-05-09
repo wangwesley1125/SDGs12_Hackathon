@@ -41,6 +41,21 @@
         row.industry.includes(query) || query.includes(row.industry)
       );
 
+      function roundCarbon(carbonStr) {
+        const num = parseFloat(carbonStr.replace(/,/g, ''));
+        if (isNaN(num)) return carbonStr;
+        const unit = carbonStr.replace(/[\d,\.]+/, '').trim();
+        let display;
+        if (num >= 1e8) {
+          display = (num / 1e8).toFixed(1) + ' 億';
+        } else if (num >= 1e4) {
+          display = (num / 1e4).toFixed(1) + ' 萬';
+        } else {
+          display = Math.round(num).toLocaleString();
+        }
+        return '約 ' + display + ' ' + unit;
+      }
+
       const tbody = document.getElementById('result-body');
 
       if (matched.length === 0) {
@@ -51,7 +66,7 @@
           const tr = document.createElement('tr');
           tr.innerHTML = `
             <td>${row.name}</td>
-            <td>${row.carbon}</td>
+            <td>${roundCarbon(row.carbon)}</td>
             <td><a href="detail.html?name=${encodeURIComponent(row.name)}">查看</a></td>
           `;
           tbody.appendChild(tr);
