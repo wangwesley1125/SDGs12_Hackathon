@@ -465,17 +465,35 @@ button:hover {
   tbody th { width: 120px; }
 
   th, td { font-size: 0.88rem; padding: 0.6rem 0.75rem; }
+
+  /* Navbar：字縮小避免溢出 */
+  .nav-brand-main { font-size: 0.95rem; }
+  .nav-btn { font-size: 0.78rem; padding: 0.3rem 0.6rem; }
 }
 
 /* 手機（< 480px）*/
 @media (max-width: 480px) {
   h1 { font-size: 1.15rem; }
 
-  .search-box input[type="text"] { max-width: 100%; }
-
   tbody th { width: 100px; }
 
   th, td { font-size: 0.82rem; padding: 0.5rem 0.6rem; }
 
-  button { width: 100%; }
+  /* Navbar 允許換行 */
+  .navbar { flex-wrap: wrap; gap: 0.4rem; padding: 0.6rem 1rem; }
+  .nav-links { flex-wrap: wrap; gap: 0.35rem; }
+  .nav-brand-main { font-size: 0.88rem; }
+  .nav-btn { font-size: 0.75rem; padding: 0.28rem 0.5rem; }
+
+  /* 搜尋框滿版 */
+  .search-box input[type="text"] { max-width: 100%; }
+
+  /* 搜尋卡片高度自動延伸 */
+  .search-box::before { height: auto; min-height: 300px; }
+
+  /* 首頁查詢按鈕滿版（只針對 search-box 內） */
+  .search-box button { width: 100%; max-width: 360px; }
+
+  /* bottom-bar 按鈕不受全域 width 影響 */
+  .bottom-bar-btn { flex: 1; text-align: center; }
 }
