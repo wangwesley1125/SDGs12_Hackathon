@@ -8,21 +8,59 @@
     </head>
 
     <body>
+        <nav class="navbar">
+            <span class="nav-brand">企業碳排採購系統</span>
+            <div class="nav-links">
+                <div class="dropdown">
+                    <button class="nav-btn" onclick="toggleDropdown()">行業類別 ▾</button>
+                    <ul class="dropdown-menu" id="industry-menu"></ul>
+                </div>
+                <a class="nav-btn" href="about.html">關於我們</a>
+            </div>
+        </nav>
+
         <div class="search-box">
             <h1>輸入您所需的行業</h1>
             <input type="text" id="industry" placeholder="例如：塑膠容器製造…">
-            <button onclick="search()">確認</button>
+            <button onclick="search()">查詢</button>
         </div>
 
+        <footer class="footer">
+            <p>© 2026 企業碳排採購系統. All rights reserved.</p>
+        </footer>
+
+        <script src="data.js"></script>
         <script>
+            // 搜尋
             function search() {
-            const value = document.getElementById('industry').value.trim();
-            if (!value) return;
-            window.location.href = 'results.html?industry=' + encodeURIComponent(value);
+                const value = document.getElementById('industry').value.trim();
+                if (!value) return;
+                window.location.href = 'results.html?industry=' + encodeURIComponent(value);
             }
 
             document.getElementById('industry').addEventListener('keydown', function (e) {
-            if (e.key === 'Enter') search();
+                if (e.key === 'Enter') search();
+            });
+
+            // 從 database 抓出不重複的行業，產生下拉選單
+            const industries = [...new Set(database.map(r => r.industry))];
+            const menu = document.getElementById('industry-menu');
+            industries.forEach(ind => {
+                const li = document.createElement('li');
+                li.innerHTML = `<a href="results.html?industry=${encodeURIComponent(ind)}">${ind}</a>`;
+                menu.appendChild(li);
+            });
+
+            // 下拉開關
+            function toggleDropdown() {
+                menu.classList.toggle('open');
+            }
+
+            // 點外面關閉
+            document.addEventListener('click', function (e) {
+                if (!e.target.closest('.dropdown')) {
+                    menu.classList.remove('open');
+                }
             });
         </script>
     </body>
