@@ -11,6 +11,29 @@ body {
   padding: 2rem 1rem;
 }
 
+/* ── 首頁置中搜尋區 ── */
+.search-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  gap: 1rem;
+}
+
+.search-box input[type="text"] {
+  width: 320px;
+  padding: 0.6rem 1rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  outline: none;
+}
+
+.search-box input[type="text"]:focus {
+  border-color: #2e7d32;
+}
+
 h1 {
   font-size: 1.6rem;
   margin-bottom: 1.5rem;
