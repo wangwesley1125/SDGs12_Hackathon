@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>查詢結果</title>
+  </head>
+  <body>
+    <h1 id="heading">查詢結果</h1>
+
+    <table id="result-table">
+      <thead>
+        <tr>
+          <th>公司名稱</th>
+          <th>碳排放</th>
+          <th>詳細</th>
+        </tr>
+      </thead>
+      <tbody id="result-body">
+      </tbody>
+    </table>
+
+    <p id="no-result" style="display:none;">查無相關資料</p>
+
+    <a class="back" href="index.html">返回查詢</a>
+
+    <script src="data.js"></script>
+    <script>
+      const params = new URLSearchParams(window.location.search);
+      const query = (params.get('industry') || '').trim();
+
+      if (query) {
+        document.getElementById('heading').textContent = '「' + query + '」查詢結果';
+      }
+
+      const matched = database.filter(row =>
+        row.industry.includes(query) || query.includes(row.industry)
+      );
+
+      const tbody = document.getElementById('result-body');
+
+      if (matched.length === 0) {
+        document.getElementById('result-table').style.display = 'none';
+        document.getElementById('no-result').style.display = 'block';
+      } else {
+        matched.forEach(row => {
+          const tr = document.createElement('tr');
+          tr.innerHTML = `
+            <td>${row.name}</td>
+            <td>${row.carbon}</td>
+            <td><a href="detail.html?name=${encodeURIComponent(row.name)}">查看</a></td>
+          `;
+          tbody.appendChild(tr);
+        });
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>公司詳細資料</title>
+  </head>
+  <body>
+    <h1 id="company-name">公司詳細資料</h1>
+
+    <table id="detail-table">
+      <tbody>
+        <tr><th>行業別</th><td id="d-industry"></td></tr>
+        <tr><th>總碳排放量</th><td id="d-carbon"></td></tr>
+        <tr><th>直接排放量</th><td id="d-scope1"></td></tr>
+        <tr><th>間接排放量</th><td id="d-scope2"></td></tr>
+        <tr><th>電話</th><td id="d-phone"></td></tr>
+        <tr><th>網址</th><td><a id="d-website" href="#" target="_blank"></a></td></tr>
+      </tbody>
+    </table>
+
+    <p id="not-found" style="display:none;">找不到該公司資料</p>
+
+    <hr>
+
+    <h2>聯絡廠商</h2>
+    <p>收件人：<span id="d-email"></span></p>
+    <textarea id="mail-body" rows="8" placeholder="請輸入信件內容…" style="width:100%;box-sizing:border-box;"></textarea>
+    <br>
+    <button onclick="sendMail()">送出</button>
+
+    <a href="javascript:history.back()" style="display:block;margin-top:1rem;">返回結果</a>
+
+    <script src="data.js"></script>
+    <script>
+      const params = new URLSearchParams(window.location.search);
+      const name = (params.get('name') || '').trim();
+
+      const company = database.find(row => row.name === name);
+
+      if (!company) {
+        document.getElementById('detail-table').style.display = 'none';
+        document.getElementById('not-found').style.display = 'block';
+      } else {
+        document.getElementById('company-name').textContent = company.name;
+        document.getElementById('d-industry').textContent = company.industry;
+        document.getElementById('d-carbon').textContent = company.carbon;
+        document.getElementById('d-scope1').textContent = company.scope1;
+        document.getElementById('d-scope2').textContent = company.scope2;
+        document.getElementById('d-phone').textContent = company.phone;
+        document.getElementById('d-email').textContent = company.email;
+
+        const websiteLink = document.getElementById('d-website');
+        websiteLink.textContent = company.website;
+        websiteLink.href = company.website;
+      }
+
+      function sendMail() {
+        const content = document.getElementById('mail-body').value.trim();
+        if (!content) {
+          alert('請輸入信件內容');
+          return;
+        }
+        // 目前僅模擬送出，之後可串接後端 API
+        alert('信件已送出！');
+        document.getElementById('mail-body').value = '';
+      }
+    </script>
+  </body>
+</html>
