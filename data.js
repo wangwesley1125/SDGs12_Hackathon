@@ -120,14 +120,3 @@ const database = [
     email: "test@gmail.com",
   },
 ];
-
-/* 
-industry: "",
-name: "",
-carbon: "",
-scope1: "",
-scope2: "",
-phone: "",
-website: "",
-email: "test@gmail.com",
-*/
