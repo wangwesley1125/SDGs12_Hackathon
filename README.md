@@ -6,7 +6,7 @@
 
 **無需安裝，直接開啟瀏覽器即可使用：**
 
-👉 [https://wangwesley1125.github.io/SDGs12_Hackathon/](https://wangwesley1125.github.io/SDGs12_Hackathon/)
+[https://wangwesley1125.github.io/SDGs12_Hackathon/](https://wangwesley1125.github.io/SDGs12_Hackathon/)
 
 在淨零排放與碳費法規的雙重壓力下，供應鏈碳管理已從企業的「加分題」變為「生存題」。本系統直接串接政府環境部氣候變遷署的官方碳排數據，讓採購人員在數秒內完成供應商碳排查詢、比對與報告匯出。
 
