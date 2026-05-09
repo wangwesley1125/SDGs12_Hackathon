@@ -18,6 +18,10 @@
                     <button class="nav-btn" onclick="toggleDropdown()">行業類別 ▾</button>
                     <ul class="dropdown-menu" id="industry-menu"></ul>
                 </div>
+                <div class="nav-badge-wrap">
+                    <a class="nav-btn" href="calculate.html">計算總排</a>
+                    <span class="nav-badge" id="saved-badge" style="display:none;"></span>
+                </div>
                 <a class="nav-btn" href="about.html">關於我們</a>
             </div>
         </nav>
@@ -54,6 +58,14 @@
                 li.innerHTML = `<a href="results.html?industry=${encodeURIComponent(ind)}">${ind}</a>`;
                 menu.appendChild(li);
             });
+
+            // 儲存數量 badge
+            const savedCount = JSON.parse(localStorage.getItem('savedCompanies') || '[]').length;
+            if (savedCount > 0) {
+                const badge = document.getElementById('saved-badge');
+                badge.textContent = savedCount;
+                badge.style.display = 'block';
+            }
 
             // 下拉開關
             function toggleDropdown() {

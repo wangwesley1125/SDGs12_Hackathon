@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>計算總排</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+      /* 列印時只顯示 print-area，隱藏其他所有元素 */
+      @media print {
+        body > *:not(#print-area) { display: none !important; }
+        #print-area {
+          display: block !important;
+          font-family: sans-serif;
+          padding: 2rem;
+          color: #000;
+        }
+        #print-area table {
+          width: 100%;
+          border-collapse: collapse;
+          margin-top: 1rem;
+        }
+        #print-area th, #print-area td {
+          border: 1px solid #999;
+          padding: 0.5rem 0.75rem;
+          text-align: left;
+          font-size: 0.9rem;
+        }
+        #print-area th { background: #e8f5e9; }
+        #print-area .print-total {
+          margin-top: 1.2rem;
+          font-size: 1rem;
+          font-weight: bold;
+        }
+        #print-area .print-date {
+          font-size: 0.8rem;
+          color: #555;
+          margin-bottom: 0.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>計算總排放量</h1>
+
+      <div class="table-wrap">
+        <table id="calc-table">
+          <thead>
+            <tr>
+              <th style="width:40px;"></th>
+              <th>公司名稱</th>
+              <th>總碳排</th>
+              <th style="width:48px;"></th>
+            </tr>
+          </thead>
+          <tbody id="calc-body"></tbody>
+        </table>
+      </div>
+
+      <p id="empty-msg" style="display:none; color:#888; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); text-align:center; font-size:1rem;">尚無儲存的公司，請至詳細頁面點擊「儲存」。</p>
+
+      <div class="total-bar" id="total-bar">
+        已勾選總排放量：<strong id="total-num">0</strong> 公噸 CO₂e
+      </div>
+
+    </div>
+
+    <!-- 底部固定 action bar -->
+    <div class="bottom-bar">
+      <a class="bottom-bar-btn outline" href="index.html">返回首頁</a>
+      <button class="bottom-bar-btn" onclick="exportPDF()">匯出PDF</button>
+    </div>
+
+    <!-- 列印區（平時隱藏） -->
+    <div id="print-area" style="display:none;"></div>
+
+    <script>
+      function parseCarbon(str) {
+        return parseFloat(str.replace(/,/g, '')) || 0;
+      }
+
+      function formatCarbon(num) {
+        if (num >= 1e8) return (num / 1e8).toFixed(2) + ' 億';
+        if (num >= 1e4) return (num / 1e4).toFixed(2) + ' 萬';
+        return Math.round(num).toLocaleString();
+      }
+
+      function render() {
+        const saved = JSON.parse(localStorage.getItem('savedCompanies') || '[]');
+        const tbody = document.getElementById('calc-body');
+        tbody.innerHTML = '';
+
+        if (saved.length === 0) {
+          document.getElementById('calc-table').style.display = 'none';
+          document.getElementById('total-bar').style.display = 'none';
+          document.getElementById('empty-msg').style.display = 'block';
+          return;
+        }
+
+        saved.forEach((company, idx) => {
+          const tr = document.createElement('tr');
+          tr.innerHTML = `
+            <td><input type="checkbox" class="row-check" data-carbon="${parseCarbon(company.carbon)}" data-name="${company.name}" data-raw="${company.carbon}" onchange="updateTotal()"></td>
+            <td>${company.name}</td>
+            <td>${company.carbon}</td>
+            <td><button class="delete-btn" onclick="deleteCompany(${idx})" title="刪除">🗑</button></td>
+          `;
+          tbody.appendChild(tr);
+        });
+
+        updateTotal();
+      }
+
+      function updateTotal() {
+        let total = 0;
+        document.querySelectorAll('.row-check:checked').forEach(cb => {
+          total += parseFloat(cb.dataset.carbon) || 0;
+        });
+        document.getElementById('total-num').textContent = formatCarbon(total);
+      }
+
+      function deleteCompany(idx) {
+        const saved = JSON.parse(localStorage.getItem('savedCompanies') || '[]');
+        saved.splice(idx, 1);
+        localStorage.setItem('savedCompanies', JSON.stringify(saved));
+        render();
+      }
+
+      function exportPDF() {
+        const checked = document.querySelectorAll('.row-check:checked');
+        if (checked.length === 0) {
+          alert('請先勾選要匯出的公司');
+          return;
+        }
+
+        let total = 0;
+        let rows = '';
+        checked.forEach(cb => {
+          total += parseFloat(cb.dataset.carbon) || 0;
+          rows += `<tr><td>${cb.dataset.name}</td><td>${cb.dataset.raw}</td></tr>`;
+        });
+
+        const now = new Date().toLocaleDateString('zh-TW');
+        document.getElementById('print-area').innerHTML = `
+          <h2>碳排放總計報告</h2>
+          <p class="print-date">產出日期：${now}</p>
+          <table>
+            <thead><tr><th>公司名稱</th><th>總碳排</th></tr></thead>
+            <tbody>${rows}</tbody>
+          </table>
+          <p class="print-total">勾選總排放量：${formatCarbon(total)} 公噸 CO₂e</p>
+        `;
+
+        window.print();
+      }
+
+      render();
+    </script>
+  </body>
+</html>

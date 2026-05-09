@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <div class="container">
+    <div class="container" style="padding-bottom: 5rem;">
       <h1 id="company-name">公司詳細資料</h1>
 
       <div class="table-wrap">
@@ -30,10 +30,16 @@
       <h2>聯絡廠商</h2>
       <p class="mail-to">收件人：<span id="d-email"></span></p>
       <textarea id="mail-body" rows="8" placeholder="請輸入信件內容…"></textarea>
-      <button onclick="sendMail()">送出信件</button>
-
-      <a class="btn-back" href="javascript:history.back()">上一頁</a>
     </div>
+
+    <!-- 底部固定 action bar -->
+    <div class="bottom-bar">
+      <a class="bottom-bar-btn outline" href="javascript:history.back()">上一頁</a>
+      <button class="bottom-bar-btn" onclick="sendMail()">送出信件</button>
+      <button class="bottom-bar-btn" id="save-btn" onclick="saveCompany()">儲存</button>
+    </div>
+
+    <div class="save-toast" id="save-toast">儲存成功 ✓</div>
 
     <script src="data.js"></script>
     <script>
@@ -57,6 +63,34 @@
         const websiteLink = document.getElementById('d-website');
         websiteLink.textContent = company.website;
         websiteLink.href = company.website;
+      }
+
+      function updateSaveBtn() {
+        const saved = JSON.parse(localStorage.getItem('savedCompanies') || '[]');
+        const btn = document.getElementById('save-btn');
+        if (saved.some(c => c.name === name)) {
+          btn.textContent = '已儲存';
+          btn.disabled = true;
+          btn.style.background = '#aaa';
+        } else {
+          btn.textContent = '儲存';
+          btn.disabled = false;
+          btn.style.background = '';
+        }
+      }
+      updateSaveBtn();
+
+      function saveCompany() {
+        if (!company) return;
+        const saved = JSON.parse(localStorage.getItem('savedCompanies') || '[]');
+        if (saved.some(c => c.name === company.name)) return;
+        saved.push({ name: company.name, carbon: company.carbon, industry: company.industry });
+        localStorage.setItem('savedCompanies', JSON.stringify(saved));
+        updateSaveBtn();
+
+        const toast = document.getElementById('save-toast');
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 2000);
       }
 
       function sendMail() {
