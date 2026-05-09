@@ -39,9 +39,14 @@
 
       const matched = database
         .filter(row => row.industry.includes(query) || query.includes(row.industry))
-        .sort((a, b) => parseFloat(a.carbon) - parseFloat(b.carbon));
+        .sort((a, b) => {
+          const na = parseFloat(a.carbon) || Infinity;
+          const nb = parseFloat(b.carbon) || Infinity;
+          return na - nb;
+        });
 
       function roundCarbon(carbonStr) {
+        if (carbonStr === '未申報') return '<span style="color:#c62828;font-weight:600;">未申報</span>';
         const num = parseFloat(carbonStr.replace(/,/g, ''));
         if (isNaN(num)) return carbonStr;
         const unit = carbonStr.replace(/[\d,\.]+/, '').trim();

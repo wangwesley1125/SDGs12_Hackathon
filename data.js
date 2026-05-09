@@ -119,4 +119,14 @@ const database = [
     website: "https://www.hct.com.tw/",
     email: "test@gmail.com",
   },
+  {
+    industry: "印刷及輔助業",
+    name: "XXX印刷",
+    carbon: "未申報",
+    scope1: "- 公噸 CO₂e",
+    scope2: "- 公噸 CO₂e",
+    phone: "-",
+    website: "-",
+    email: "-",
+  },
 ];

@@ -54,7 +54,12 @@
       } else {
         document.getElementById('company-name').textContent = company.name;
         document.getElementById('d-industry').textContent = company.industry;
-        document.getElementById('d-carbon').textContent = company.carbon;
+        const carbonEl = document.getElementById('d-carbon');
+        if (company.carbon === '未申報') {
+          carbonEl.innerHTML = '<span style="color:#c62828;font-weight:600;">未申報</span>';
+        } else {
+          carbonEl.textContent = company.carbon;
+        }
         document.getElementById('d-scope1').textContent = company.scope1;
         document.getElementById('d-scope2').textContent = company.scope2;
         document.getElementById('d-phone').textContent = company.phone;
