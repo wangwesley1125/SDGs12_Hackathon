@@ -15,7 +15,8 @@
                 <span class="nav-brand-sub">Eco-CO2</span>
                 <span class="nav-brand-main">企業採購碳排比對系統</span>
             </div>
-            <div class="nav-links">
+            <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="選單">☰</button>
+            <div class="nav-links" id="nav-links">
                 <div class="dropdown">
                     <button class="nav-btn" onclick="toggleDropdown()">行業類別 ▾</button>
                     <ul class="dropdown-menu" id="industry-menu"></ul>
@@ -67,6 +68,14 @@
                 const badge = document.getElementById('saved-badge');
                 badge.textContent = savedCount;
                 badge.style.display = 'block';
+            }
+
+            // 漢堡選單開關
+            function toggleMenu() {
+                const links = document.getElementById('nav-links');
+                const btn = document.getElementById('hamburger');
+                const open = links.classList.toggle('open');
+                btn.textContent = open ? '✕' : '☰';
             }
 
             // 下拉開關
