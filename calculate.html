@@ -50,6 +50,7 @@
             <tr>
               <th style="width:40px;"></th>
               <th>公司名稱</th>
+              <th>行業類別</th>
               <th>總碳排</th>
               <th style="width:48px;"></th>
             </tr>
@@ -103,6 +104,7 @@
           tr.innerHTML = `
             <td><input type="checkbox" class="row-check" data-carbon="${parseCarbon(company.carbon)}" data-name="${company.name}" data-raw="${company.carbon}" onchange="updateTotal()"></td>
             <td>${company.name}</td>
+            <td>${company.industry}</td>
             <td>${company.carbon}</td>
             <td><button class="delete-btn" onclick="deleteCompany(${idx})" title="刪除">🗑</button></td>
           `;
