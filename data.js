@@ -20,7 +20,7 @@ const database = [
     email: "test@uni-president.com",
   },
   {
-    industry: "金屬及塑膠容器",
+    industry: "金屬容器",
     name: "大華金屬 (全廠)",
     carbon: "9927.456 公噸 CO₂e",
     scope1: "1085.304 公噸 CO₂e",
