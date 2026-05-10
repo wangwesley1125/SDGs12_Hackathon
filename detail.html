@@ -92,7 +92,7 @@
         if (!company) return;
         const saved = JSON.parse(localStorage.getItem('savedCompanies') || '[]');
         if (saved.some(c => c.name === company.name)) return;
-        saved.push({ name: company.name, carbon: company.carbon, industry: company.industry });
+        saved.push({ name: company.name, usage: company.usage || '', carbon: company.carbon, industry: company.industry });
         localStorage.setItem('savedCompanies', JSON.stringify(saved));
         updateSaveBtn();
 
