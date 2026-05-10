@@ -15,6 +15,7 @@
           <thead>
             <tr>
               <th>公司名稱</th>
+              <th>用途</th>
               <th>年碳排放</th>
               <th>詳細</th>
             </tr>
@@ -71,6 +72,7 @@
           const tr = document.createElement('tr');
           tr.innerHTML = `
             <td>${row.name}</td>
+            <td>${row.usage || ''}</td>
             <td>${roundCarbon(row.carbon)}</td>
             <td><a href="detail.html?name=${encodeURIComponent(row.name)}">查看</a></td>
           `;
