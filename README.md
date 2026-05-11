@@ -37,6 +37,14 @@ SDGs12_Hackathon/
 
 ## 快速開始
 
+### 線上版
+
+本專案無需任何安裝，直接用瀏覽器開啟即可：
+
+**👉 https://wangwesley1125.github.io/SDGs12_Hackathon/**
+
+### 本機執行
+
 本專案為純靜態前端，無需安裝任何套件或啟動伺服器。
 
 直接用瀏覽器開啟 `index.html` 即可執行。
